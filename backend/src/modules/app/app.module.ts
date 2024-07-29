@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from '@modules/app';
-import { AppService } from '@modules/app';
-import { UserModule } from '@src/modules/user';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configurations from '@src/configurations';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from '@models/user.model';
 import { AuthModule } from '@modules/auth';
+import { UserModule } from '@modules/user';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
