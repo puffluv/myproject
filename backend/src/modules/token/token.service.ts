@@ -12,12 +12,12 @@ export class TokenService {
   async generateJwtToken(user) {
     const payload = { user };
     const accessToken = this.jwtService.sign(payload, {
-      secret: this.configService.get<string>('secret_jwt'),
-      expiresIn: this.configService.get<number>('expire_jwt'), // Убедитесь, что это число
+      secret: this.configService.get('secret_jwt'),
+      expiresIn: this.configService.get('expire_jwt'), // Убедитесь, что это число
     });
     const refreshToken = this.jwtService.sign(payload, {
-      secret: this.configService.get<string>('refresh_secret'),
-      expiresIn: this.configService.get<number>('expire_refresh_jwt'), // Убедитесь, что это число
+      secret: this.configService.get('refresh_secret'),
+      expiresIn: this.configService.get('expire_refresh_jwt'), // Убедитесь, что это число
     });
     return { accessToken, refreshToken };
   }
