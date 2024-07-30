@@ -7,11 +7,11 @@ import { CreateUserDTO } from '@modules/user/dto';
 import { UserLoginDTO } from '@modules/auth/dto';
 import { TokenService } from '@modules/token';
 
-
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService,
-    private readonly tokenService: TokenService
+  constructor(
+    private readonly userService: UserService,
+    private readonly tokenService: TokenService,
   ) {}
 
   async registerUsers(dto: CreateUserDTO): Promise<CreateUserDTO> {
@@ -28,8 +28,12 @@ export class AuthService {
       existUser.password,
     );
     if (!validatePassword) throw new BadRequestException(appError.WRONG_DATA);
-    const token = await this.tokenService.generateJwtToken(dto.email);
-    const user = await this.userService.publicUser(dto.email)
-    return {...user, token};
+    const tokens = await this.tokenService.generateJwtToken(dto.email);
+    const user = await this.userService.publicUser(dto.email);
+    return {
+      ...user,
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+    };
   }
 }
