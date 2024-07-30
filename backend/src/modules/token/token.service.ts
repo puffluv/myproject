@@ -13,11 +13,11 @@ export class TokenService {
     const payload = { user };
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get<string>('secret_jwt'),
-      expiresIn: Number(this.configService.get<number>('expire_jwt')), // Убедитесь, что это число
+      expiresIn: this.configService.get<number>('expire_jwt'), // Убедитесь, что это число
     });
     const refreshToken = this.jwtService.sign(payload, {
       secret: this.configService.get<string>('refresh_secret'),
-      expiresIn: Number(this.configService.get<number>('expire_refresh_jwt')), // Убедитесь, что это число
+      expiresIn: this.configService.get<number>('expire_refresh_jwt'), // Убедитесь, что это число
     });
     return { accessToken, refreshToken };
   }
