@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TokenModule } from '@modules/token';
 import { WatchlistModule } from '@modules/watchlist';
+import { Watchlist } from '@modules/watchlist/models';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { WatchlistModule } from '@modules/watchlist';
         database: configService.get('db_name'),
         synchronize: true,
         autoLoadModels: true,
-        models: [User],
+        models: [User, Watchlist],
       }),
     }),
     UserModule,
