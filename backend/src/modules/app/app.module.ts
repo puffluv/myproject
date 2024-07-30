@@ -8,6 +8,7 @@ import { UserModule } from '@modules/user';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TokenModule } from '@modules/token';
+import { WatchlistModule } from '@modules/watchlist';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { TokenModule } from '@modules/token';
     }),
     UserModule,
     AuthModule,
-    TokenModule
+    TokenModule,
+    WatchlistModule,
   ],
   controllers: [AppController],
   providers: [AppService],
