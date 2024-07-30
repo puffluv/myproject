@@ -9,4 +9,6 @@ export default () => ({
   db_host: env.DB_HOST,
   secret_jwt: env.SECRET,
   expire_jwt: env.EXPIRE_JWT,
+  refresh_secret: env.REFRESH_SECRET,
+  expire_refresh_jwt: env.EXPIRE_REFRESH_JWT,
 });
