@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class WatchlsitDTO {
+export class WatchlistDTO {
   @IsString()
   name: string;
 
