@@ -15,9 +15,9 @@ import { UserModule } from '@modules/user';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('secret_jwt'),
+        secret: configService.get('secret_jwt'),
         signOptions: {
-          expiresIn: configService.get<number>('expire_jwt'),
+          expiresIn: configService.get('expire_jwt'),
         },
       }),
       inject: [ConfigService],
