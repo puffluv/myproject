@@ -48,7 +48,7 @@ export class TokenService {
         { email: user.email, sub: user.id },
         {
           secret: this.configService.get<string>('secret_jwt'),
-          expiresIn: '15m',
+          expiresIn: this.configService.get<string>('expire_refresh_jwt'),
         },
       );
 

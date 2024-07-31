@@ -31,7 +31,7 @@ export class AuthController {
   @ApiTags('API')
   @ApiResponse({ status: 200, type: AuthUserResponse })
   @Post('login')
-  login(@Body() dto: UserLoginDTO): Promise<any> {
+  login(@Body() dto: UserLoginDTO): Promise<AuthUserResponse> {
     return this.authService.loginUser(dto);
   }
 
@@ -39,7 +39,9 @@ export class AuthController {
   @Post('refresh')
   @ApiResponse({ status: 200, description: 'Token refreshed successfully' })
   @ApiResponse({ status: 400, description: 'Invalid or expired refresh token' })
-  async refresh(@Body('refreshToken') refreshToken: string): Promise<any> {
+  async refresh(
+    @Body('refreshToken') refreshToken: string,
+  ): Promise<AuthUserResponse> {
     return this.authService.refresh(refreshToken);
   }
 }

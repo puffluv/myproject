@@ -20,7 +20,7 @@ export class AuthService {
     return this.userService.createUser(dto);
   }
 
-  async loginUser(dto: UserLoginDTO): Promise<any> {
+  async loginUser(dto: UserLoginDTO): Promise<AuthUserResponse> {
     const existUser = await this.userService.findUserByEmail(dto.email);
     if (!existUser) throw new BadRequestException(appError.USER_NOT_EXIST);
     const validatePassword = await bcrypt.compare(
@@ -37,10 +37,18 @@ export class AuthService {
     };
   }
 
-  async refresh(@Body('refreshToken') refreshToken: string): Promise<any> {
+  async refresh(
+    @Body('refreshToken') refreshToken: string,
+  ): Promise<AuthUserResponse> {
     try {
-      const tokens = await this.tokenService.refreshAccessToken(refreshToken);
-      return tokens;
+      const payload = await this.tokenService.verifyRefreshToken(refreshToken);
+      const user = await this.userService.publicUser(payload.email);
+      const tokens = await this.tokenService.generateJwtToken(user);
+      return {
+        user,
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      };
     } catch (e) {
       throw new BadRequestException(appError.INVALID_REF_TOKEN);
     }
