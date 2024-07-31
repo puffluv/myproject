@@ -6,6 +6,7 @@ import {
 import { InjectModel } from '@nestjs/sequelize';
 import { Watchlist } from '@modules/watchlist/models';
 import { CreateAssetResponse } from '@modules/watchlist/response';
+import { appError } from '@src/common/constants';
 
 @Injectable()
 export class WatchlistService {
@@ -16,7 +17,7 @@ export class WatchlistService {
 
   async createAsset(user, dto): Promise<CreateAssetResponse> {
     if (!user || !user.id) {
-      throw new BadRequestException('User not found in request');
+      throw new BadRequestException(appError.USER_NOT_FOUND);
     }
     const watchlist = {
       user: user.id,
@@ -32,7 +33,7 @@ export class WatchlistService {
       where: { user: userId, id: assetId },
     });
     if (!asset) {
-      throw new NotFoundException('Asset not found');
+      throw new NotFoundException(appError.ASSET_NOT_FOUND);
     }
     await asset.destroy();
     return true;

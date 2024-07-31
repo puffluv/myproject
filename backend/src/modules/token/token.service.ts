@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { UserService } from '../user';
+import { appError } from '@src/common/constants';
 
 @Injectable()
 export class TokenService {
@@ -31,7 +32,7 @@ export class TokenService {
       });
       return payload;
     } catch (e) {
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new UnauthorizedException(appError.INVALID_REF_TOKEN);
     }
   }
 
@@ -54,7 +55,7 @@ export class TokenService {
 
       return { accessToken: newAccessToken, refreshToken };
     } catch (e) {
-      throw new UnauthorizedException('Invalid refresh token');
+      throw new UnauthorizedException(appError.INVALID_REF_TOKEN);
     }
   }
 }
