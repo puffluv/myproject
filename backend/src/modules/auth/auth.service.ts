@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Body, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { AuthUserResponse } from '@modules/auth/response';
 import { appError } from '@src/common/constants';
@@ -35,5 +35,14 @@ export class AuthService {
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
     };
+  }
+
+  async refresh(@Body('refreshToken') refreshToken: string): Promise<any> {
+    try {
+      const tokens = await this.tokenService.refreshAccessToken(refreshToken);
+      return tokens;
+    } catch (e) {
+      throw new BadRequestException(appError.INVALID_REF_TOKEN);
+    }
   }
 }

@@ -35,22 +35,11 @@ export class AuthController {
     return this.authService.loginUser(dto);
   }
 
+  @ApiTags('API')
   @Post('refresh')
-  @ApiResponse({ status: 200, type: AuthUserResponse })
+  @ApiResponse({ status: 200, description: 'Token refreshed successfully' })
   @ApiResponse({ status: 400, description: 'Invalid or expired refresh token' })
-  async refresh(@Body('refreshToken') refreshToken: string) {
-    try {
-      const tokens = await this.tokenService.refreshAccessToken(refreshToken);
-      return tokens;
-    } catch (e) {
-      console.error('Refresh token error:', e);
-      throw new BadRequestException(appError.INVALID_REF_TOKEN);
-    }
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Post('test')
-  test() {
-    return true;
+  async refresh(@Body('refreshToken') refreshToken: string): Promise<any> {
+    return this.authService.refresh(refreshToken);
   }
 }

@@ -35,9 +35,9 @@ export class UserService {
       where: { email },
       attributes: { exclude: ['password'] },
       include: {
-        model: Watchlist, 
-        required: false
-      }
+        model: Watchlist,
+        required: false,
+      },
     });
   }
 
@@ -47,7 +47,7 @@ export class UserService {
   }
 
   async deleteUser(email: string): Promise<boolean> {
-    await this.userRepository.destroy({ where: { email } });
-    return true;
+    const result = await this.userRepository.destroy({ where: { email } });
+    return result > 0;
   }
 }
