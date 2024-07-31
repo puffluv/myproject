@@ -16,26 +16,34 @@ export class WatchlistService {
   ) {}
 
   async createAsset(user, dto): Promise<CreateAssetResponse> {
-    if (!user || !user.id) {
-      throw new BadRequestException(appError.USER_NOT_FOUND);
+    try {
+        if (!user || !user.id) {
+            throw new BadRequestException(appError.USER_NOT_FOUND);
+          }
+          const watchlist = {
+            user: user.id,
+            name: dto.name,
+            assetId: dto.assetId,
+          };
+          await this.watchlistRepository.create(watchlist);
+          return watchlist;
+    } catch (e) {
+        throw new Error(e)
     }
-    const watchlist = {
-      user: user.id,
-      name: dto.name,
-      assetId: dto.assetId,
-    };
-    await this.watchlistRepository.create(watchlist);
-    return watchlist;
   }
 
   async deleteAsset(userId: string, assetId: string): Promise<boolean> {
-    const asset = await this.watchlistRepository.findOne({
-      where: { user: userId, id: assetId },
-    });
-    if (!asset) {
-      throw new NotFoundException(appError.ASSET_NOT_FOUND);
+    try {
+        const asset = await this.watchlistRepository.findOne({
+            where: { user: userId, id: assetId },
+          });
+          if (!asset) {
+            throw new NotFoundException(appError.ASSET_NOT_FOUND);
+          }
+          await asset.destroy();
+          return true;
+    } catch (e) {
+        throw new Error(e)
     }
-    await asset.destroy();
-    return true;
   }
 }
