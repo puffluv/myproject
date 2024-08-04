@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LoginPage from "./login";
 import RegisterPage from "./register";
 import "./style.scss";
 import { Box } from "@mui/material";
 import { instance } from "../../utils/axios";
+import { useAppDispatch } from "../../utils/hook";
+import { login } from "../../store/slice/auth";
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState("");
@@ -13,17 +15,20 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
   const [firstName, setFirstName] = useState("");
   const [username, setUsername] = useState("");
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (Event: { preventDefault: () => void }) => {
     Event.preventDefault();
     if (location.pathname === "/login") {
-      const userData = {
-        email,
-        password,
-      };
       try {
+        const userData = {
+          email,
+          password,
+        };
         const user = await instance.post("auth/login", userData);
-        console.log(user.data);
+        await dispatch(login(user.data))
+        navigate('/')
       } catch (error) {
         console.error("Error logging in", error);
       }
