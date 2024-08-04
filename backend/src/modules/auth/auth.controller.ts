@@ -1,18 +1,14 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Post,
-  UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDTO } from '@modules/user/dto';
 import { UserLoginDTO } from '@modules/auth/dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthUserResponse } from '@modules/auth/response';
-import { JwtAuthGuard } from '@src/guards';
 import { TokenService } from '@modules/token';
-import { appError } from '@src/common/constants';
 
 @Controller('auth')
 export class AuthController {
@@ -22,9 +18,9 @@ export class AuthController {
   ) {}
 
   @ApiTags('API')
-  @ApiResponse({ status: 201, type: CreateUserDTO })
+  @ApiResponse({ status: 201, type: AuthUserResponse })
   @Post('register')
-  register(@Body() dto: CreateUserDTO): Promise<CreateUserDTO> {
+  register(@Body() dto: CreateUserDTO): Promise<AuthUserResponse> {
     return this.authService.registerUsers(dto);
   }
 
