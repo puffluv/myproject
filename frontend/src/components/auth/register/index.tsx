@@ -11,6 +11,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
     setConfirmPassword,
     setFirstName,
     setUsername,
+    navigate,
   } = props;
   return (
     <>
@@ -84,7 +85,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
 
       <Typography variant="body1" sx={{ fontFamily: "Montserrat" }}>
         У Вас уже есть аккаунт?
-        <span className="incitingText">Авторизация</span>
+        <span className="incitingText" onClick={() => {navigate('/login')}}>Авторизация</span>
       </Typography>
     </>
   );

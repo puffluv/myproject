@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -10,6 +11,7 @@ import { UserService } from './user.service';
 import { UpdateUserDTO } from '@modules/user/dto';
 import { JwtAuthGuard } from '@src/guards';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { appError } from '@src/common/constants';
 
 @Controller('users')
 export class UserController {
@@ -32,6 +34,9 @@ export class UserController {
   @Delete()
   deleteUser(@Req() request): Promise<boolean> {
     const user = request.user;
+    if (!user || !user.email) {
+      throw new BadRequestException(appError.USER_NOT_FOUND);
+    }
     return this.userService.deleteUser(user.email);
   }
 }

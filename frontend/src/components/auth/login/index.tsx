@@ -3,7 +3,7 @@ import { IPropsLogin } from "@src/common/types/auth";
 import React, { Fragment } from "react";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-  const { setPassword, setEmail } = props;
+  const { setPassword, setEmail, navigate } = props;
   return (
     <>
       <Typography variant="h3" fontFamily="Montserrat" textAlign="center">
@@ -49,7 +49,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
       </Button>
 
       <Typography variant="body1" sx={{ fontFamily: "Montserrat" }}>
-        У Вас нет аккаунта? <span className="incitingText">Регистрация</span>
+        У Вас нет аккаунта? <span className="incitingText" onClick={() => {navigate('/register')}}>Регистрация</span>
       </Typography>
     </>
   );
