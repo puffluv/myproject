@@ -14,11 +14,11 @@ export interface IPropsRegister {
 }
 
 export interface IAuthState {
-  user: {} | IPublicUser,
+  user: IPublicUser,
   isLogged: boolean
 }
 
-interface IPublicUser {
+export interface IPublicUser {
   id: number | null, 
   firstName: string,
   username: string,
