@@ -4,12 +4,60 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background-color: #f4f6f9;
+  padding: 20px;
   .form {
     width: 80%;
+
+    h3 {
+      font-family: "Ysabeau SC", sans-serif;
+      color: #333; // Цвет заголовка
+      margin-bottom: 10px; // Отступ снизу
+      text-align: center;
+    }
+    .subtitle1 {
+      font-family: "Ysabeau SC", sans-serif;
+      color: #666; // Цвет подзаголовка
+      margin-bottom: 20px; // Отступ снизу
+      text-align: center;
+    }
     .incitingText {
       color: #1900d5;
       margin-left: 10px;
       cursor: pointer;
+    }
+
+    .MuiInputBase-root {
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s, box-shadow 0.3s, border-color 0.3s;
+
+      &:hover {
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      input {
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #1900d5;
+          outline: none;
+        }
+      }
+    }
+    .MuiOutlinedInput-root {
+      &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #1900d5; // Цвет обводки при фокусе
+      }
+    }
+
+    .MuiInputLabel-root {
+      color: #666;
+
+      &.Mui-focused {
+        color: #1900d5;
+      }
     }
   }
 }

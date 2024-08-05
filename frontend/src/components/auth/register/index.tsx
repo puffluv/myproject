@@ -33,6 +33,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         label="Email"
         variant="standard"
         placeholder="Введите email"
+        required
         onChange={(Event) => setEmail(Event.target.value)}
       />
       <TextField
@@ -41,6 +42,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         label="Name"
         variant="standard"
         placeholder="Введите имя"
+        required
         onChange={(Event) => setFirstName(Event.target.value)}
       />
       <TextField
@@ -49,6 +51,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         label="Username"
         variant="standard"
         placeholder="Введите псевдоним"
+        required
         onChange={(Event) => setUsername(Event.target.value)}
       />
       <TextField
@@ -58,6 +61,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         label="Password"
         variant="standard"
         placeholder="Введите пароль"
+        required
         onChange={(Event) => setPassword(Event.target.value)}
       />
       <TextField
@@ -66,6 +70,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         margin="normal"
         label="Password"
         variant="standard"
+        required
         placeholder="Подтвердите пароль"
         onChange={(Event) => setConfirmPassword(Event.target.value)}
       />
@@ -77,15 +82,38 @@ const RegisterPage: React.FC<IPropsRegister> = (
           marginTop: 2,
           marginBottom: 2,
           width: "60%",
+          borderRadius: 5,
+          backgroundColor: "#1900d5",
+          color: "#fff",
+          padding: "10px 20px",
+          textTransform: "none",
+          boxShadow: "0 3px 5px 2px rgba(25, 0, 213, .3)",
+          backgroundImage: "linear-gradient(45deg, #1900d5 30%, #5300e8 90%)",
+          transition: "background-color 0.3s, transform 0.3s",
+          "&:hover": {
+            backgroundColor: "#5300e8",
+            transform: "scale(1.05)",
+          },
+          "&:active": {
+            backgroundColor: "#3e00a6",
+            transform: "scale(1)",
+          },
         }}
-        variant="text"
+        variant="contained"
       >
         Создать аккаунт
       </Button>
 
       <Typography variant="body1" sx={{ fontFamily: "Montserrat" }}>
         У Вас уже есть аккаунт?
-        <span className="incitingText" onClick={() => {navigate('/login')}}>Авторизация</span>
+        <span
+          className="incitingText"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Авторизация
+        </span>
       </Typography>
     </>
   );
