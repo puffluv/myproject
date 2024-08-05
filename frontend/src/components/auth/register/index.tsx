@@ -15,13 +15,13 @@ const RegisterPage: React.FC<IPropsRegister> = (
   } = props;
   return (
     <>
-      <Typography variant="h3" fontFamily="Montserrat" textAlign="center">
+      <Typography variant="h3" textAlign="center">
         Регистрация
       </Typography>
 
       <Typography
         variant="subtitle1"
-        fontFamily="Monsterrat"
+        className="subtitle1"
         textAlign="center"
       >
         Введите данные для регистрации
@@ -31,7 +31,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Email"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите email"
         required
         onChange={(Event) => setEmail(Event.target.value)}
@@ -40,7 +40,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Name"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите имя"
         required
         onChange={(Event) => setFirstName(Event.target.value)}
@@ -49,7 +49,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Username"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите псевдоним"
         required
         onChange={(Event) => setUsername(Event.target.value)}
@@ -59,7 +59,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Password"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите пароль"
         required
         onChange={(Event) => setPassword(Event.target.value)}
@@ -69,7 +69,7 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Password"
-        variant="standard"
+        variant="outlined"
         required
         placeholder="Подтвердите пароль"
         onChange={(Event) => setConfirmPassword(Event.target.value)}
