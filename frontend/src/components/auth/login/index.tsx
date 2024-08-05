@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, useTheme } from "@mui/material";
 import { IPropsLogin } from "@src/common/types/auth";
 import React from "react";
 import "../style.scss";
@@ -9,7 +9,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
     <>
       <Typography variant="h3">Авторизация</Typography>
 
-      <Typography variant="subtitle1" className="subtitle1">
+      <Typography variant="subtitle1">
         Введите Вашу электронную почту и пароль
       </Typography>
 
