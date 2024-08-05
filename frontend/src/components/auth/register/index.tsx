@@ -15,13 +15,13 @@ const RegisterPage: React.FC<IPropsRegister> = (
   } = props;
   return (
     <>
-      <Typography variant="h3" fontFamily="Montserrat" textAlign="center">
+      <Typography variant="h3" textAlign="center">
         Регистрация
       </Typography>
 
       <Typography
         variant="subtitle1"
-        fontFamily="Monsterrat"
+        className="subtitle1"
         textAlign="center"
       >
         Введите данные для регистрации
@@ -31,24 +31,27 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Email"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите email"
+        required
         onChange={(Event) => setEmail(Event.target.value)}
       />
       <TextField
         fullWidth={true}
         margin="normal"
         label="Name"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите имя"
+        required
         onChange={(Event) => setFirstName(Event.target.value)}
       />
       <TextField
         fullWidth={true}
         margin="normal"
         label="Username"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите псевдоним"
+        required
         onChange={(Event) => setUsername(Event.target.value)}
       />
       <TextField
@@ -56,8 +59,9 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Password"
-        variant="standard"
+        variant="outlined"
         placeholder="Введите пароль"
+        required
         onChange={(Event) => setPassword(Event.target.value)}
       />
       <TextField
@@ -65,7 +69,8 @@ const RegisterPage: React.FC<IPropsRegister> = (
         fullWidth={true}
         margin="normal"
         label="Password"
-        variant="standard"
+        variant="outlined"
+        required
         placeholder="Подтвердите пароль"
         onChange={(Event) => setConfirmPassword(Event.target.value)}
       />
@@ -77,15 +82,38 @@ const RegisterPage: React.FC<IPropsRegister> = (
           marginTop: 2,
           marginBottom: 2,
           width: "60%",
+          borderRadius: 5,
+          backgroundColor: "#1900d5",
+          color: "#fff",
+          padding: "10px 20px",
+          textTransform: "none",
+          boxShadow: "0 3px 5px 2px rgba(25, 0, 213, .3)",
+          backgroundImage: "linear-gradient(45deg, #1900d5 30%, #5300e8 90%)",
+          transition: "background-color 0.3s, transform 0.3s",
+          "&:hover": {
+            backgroundColor: "#5300e8",
+            transform: "scale(1.05)",
+          },
+          "&:active": {
+            backgroundColor: "#3e00a6",
+            transform: "scale(1)",
+          },
         }}
-        variant="text"
+        variant="contained"
       >
         Создать аккаунт
       </Button>
 
       <Typography variant="body1" sx={{ fontFamily: "Montserrat" }}>
         У Вас уже есть аккаунт?
-        <span className="incitingText" onClick={() => {navigate('/login')}}>Авторизация</span>
+        <span
+          className="incitingText"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Авторизация
+        </span>
       </Typography>
     </>
   );
