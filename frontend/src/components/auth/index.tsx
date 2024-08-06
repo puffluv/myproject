@@ -106,7 +106,7 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
           margin="auto"
           padding={5}
           borderRadius={5}
-          boxShadow={"5px 5px 10px #ccc"}
+          boxShadow={"0 4px 10px rgba(0, 0, 0, 0.15)"}
         >
           {location.pathname === "/login" ? (
             <LoginPage
