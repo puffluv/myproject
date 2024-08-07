@@ -1,4 +1,4 @@
-import { Button, TextField, Typography, useTheme } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { IPropsLogin } from "@src/common/types/auth";
 import React from "react";
 import "../style.scss";
@@ -14,21 +14,21 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
       </Typography>
 
       <TextField
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите email"
-        onChange={(Event) => setEmail(Event.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
         type="password"
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите пароль"
-        onChange={(Event) => setPassword(Event.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
       />
       <Button
         type="submit"

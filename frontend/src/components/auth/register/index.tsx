@@ -1,6 +1,7 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { IPropsRegister } from "@src/common/types/auth";
 import React from "react";
+import "../style.scss";
 
 const RegisterPage: React.FC<IPropsRegister> = (
   props: IPropsRegister
@@ -19,66 +20,62 @@ const RegisterPage: React.FC<IPropsRegister> = (
         Регистрация
       </Typography>
 
-      <Typography
-        variant="subtitle1"
-        className="subtitle1"
-        textAlign="center"
-      >
+      <Typography variant="subtitle1">
         Введите данные для регистрации
       </Typography>
 
       <TextField
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите email"
         required
-        onChange={(Event) => setEmail(Event.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
       />
       <TextField
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Name"
         variant="outlined"
         placeholder="Введите имя"
         required
-        onChange={(Event) => setFirstName(Event.target.value)}
+        onChange={(event) => setFirstName(event.target.value)}
       />
       <TextField
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Username"
         variant="outlined"
         placeholder="Введите псевдоним"
         required
-        onChange={(Event) => setUsername(Event.target.value)}
+        onChange={(event) => setUsername(event.target.value)}
       />
       <TextField
         type="password"
-        fullWidth={true}
+        fullWidth
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите пароль"
         required
-        onChange={(Event) => setPassword(Event.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
       />
       <TextField
         type="password"
-        fullWidth={true}
+        fullWidth
         margin="normal"
-        label="Password"
+        label="Confirm Password"
         variant="outlined"
         required
         placeholder="Подтвердите пароль"
-        onChange={(Event) => setConfirmPassword(Event.target.value)}
+        onChange={(event) => setConfirmPassword(event.target.value)}
       />
 
       <Button
         type="submit"
         sx={{
-          fontFamily: "Montserrat",
+          fontFamily: "Ysabeau SC",
           marginTop: 2,
           marginBottom: 2,
           width: "60%",
@@ -104,8 +101,8 @@ const RegisterPage: React.FC<IPropsRegister> = (
         Создать аккаунт
       </Button>
 
-      <Typography variant="body1" sx={{ fontFamily: "Montserrat" }}>
-        У Вас уже есть аккаунт?
+      <Typography variant="body1" sx={{ fontFamily: "Ysabeau SC" }}>
+        У Вас уже есть аккаунт?{" "}
         <span
           className="incitingText"
           onClick={() => {

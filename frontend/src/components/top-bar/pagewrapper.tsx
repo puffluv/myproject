@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect, ReactNode } from "react";
-import { ColorModeContext } from "../../theme";
+import React, { useEffect, ReactNode } from "react";
 import { useTheme, Theme } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 
@@ -23,7 +22,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
 
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.background.default;
-  }, [theme.palette.mode]);
+  }, [theme.palette.background.default]);
 
   return <div className={classes.wrapper}>{children}</div>;
 };

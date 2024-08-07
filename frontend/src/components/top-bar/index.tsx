@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Box, Grid, IconButton, InputBase, useTheme } from "@mui/material";
 import { useAppSelector } from "../../utils/hook";
 import { ColorModeContext, tokens } from "../../theme";
@@ -14,14 +14,11 @@ const TopBarComponent = () => {
   const colorMode = useContext(ColorModeContext);
   const classes = useStyles();
   const { user } = useAppSelector((state) => state.auth.user);
-  const [animating, setAnimating] = useState(false);
 
   const handleColorModeToggle = () => {
-    setAnimating(true);
     setTimeout(() => {
       colorMode.toggleColorMode();
-      setAnimating(false);
-    }, 500); // Duration of the animation
+    }, 200); // Duration of the animation
   };
 
   return (
