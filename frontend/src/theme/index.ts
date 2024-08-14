@@ -35,6 +35,14 @@ export const tokens = (mode: string) => ({
         },
         borderColor: "#757575",
         borderColorHover: "#323232",
+        white: {
+          DEFAULT: "#FFFFFF",
+          100: "#F7F7F7",
+        },
+        black: {
+          DEFAULT: "#000000",
+        },
+        sidebarborderColor: "#3C3C3C",
       }
     : {
         primary: {
@@ -68,6 +76,15 @@ export const tokens = (mode: string) => ({
         },
         borderColor: "#CCCCCC",
         borderColorHover: "#B3B3B3",
+        white: {
+          DEFAULT: "#FFFFFF",
+          100: "#F7F7F7",
+          200: "D1D1D1",
+        },
+        black: {
+          DEFAULT: "#000000",
+        },
+        sidebarborderColor: "#D1D1D1",
       }),
   gradient: {
     start: "#fff",

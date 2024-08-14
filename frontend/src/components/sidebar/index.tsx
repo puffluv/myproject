@@ -12,15 +12,14 @@ import {
   ListItemText,
   Typography,
   useTheme,
+  colors,
 } from "@mui/material";
-import {
-  ChevronLeftOutlined,
-  ChevronRightOutlined,
-  LogoutOutlined,
-} from "@mui/icons-material";
+import { ChevronLeftOutlined, LogoutOutlined } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "../flex-between";
 import { navMenu } from "../../common/moks/navigate";
+import { tokens } from "../../theme";
+import Logo from "../../assets/images/sidebar/logo.svg";
 
 const SideBarComponent = (props: any) => {
   const [active, setActive] = useState("");
@@ -29,6 +28,7 @@ const SideBarComponent = (props: any) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -37,10 +37,15 @@ const SideBarComponent = (props: any) => {
   const renderNavMenu = navMenu.map((element): JSX.Element => {
     return (
       <ListItem key={element.id}>
-        <ListItemButton onClick={() => navigate(`${element.path}`)}>
+        <ListItemButton
+          onClick={() => navigate(`${element.path}`)}
+          className={classes.navItem}
+        >
           <ListItemIcon>{element.icon}</ListItemIcon>
           <ListItemText>
-            <Typography variant={"body1"}>{element.name}</Typography>
+            <Typography variant={"body1"}>
+              {element.name.toUpperCase()}
+            </Typography>
           </ListItemText>
         </ListItemButton>
       </ListItem>
@@ -60,15 +65,29 @@ const SideBarComponent = (props: any) => {
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary.main,
               backgroundColor: theme.palette.primary.main,
+              transition: "background-color 1s ease-in-out",
               boxSizing: "border-box",
             },
           }}
         >
-          <Box width="100%">
+          <Box
+            width="100%"
+            sx={{ borderBottom: `1px solid ${colors.sidebarborderColor}` }}
+          >
             <Box>
               <FlexBetween>
-                <Box display="flex" alignItems="center" gap="10px">
-                  <Typography>Myproject</Typography>
+                <Box className={classes.brand}>
+                  <img src={Logo} alt="Logo image" />
+                  <Typography
+                    variant="h1"
+                    color={
+                      theme.palette.mode === "dark"
+                        ? colors.white.DEFAULT
+                        : colors.black.DEFAULT
+                    }
+                  >
+                    Myproject
+                  </Typography>
                 </Box>
                 {!isNotMobile && (
                   <IconButton onClick={() => setIsOpen(!isOpen)}>
@@ -78,7 +97,27 @@ const SideBarComponent = (props: any) => {
               </FlexBetween>
             </Box>
 
-            <List>{renderNavMenu}</List>
+            <List
+              sx={{
+                marginBottom: "55px",
+              }}
+            >
+              {renderNavMenu}
+            </List>
+          </Box>
+          <Box width="100%">
+            <List>
+              <ListItem>
+                <ListItemButton className={classes.navItem}>
+                  <ListItemIcon>
+                    <LogoutOutlined />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography>Выйти</Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </ListItem>
+            </List>
           </Box>
         </Drawer>
       )}
