@@ -5,20 +5,40 @@ export const tokens = (mode: string) => ({
   ...(mode === "dark"
     ? {
         primary: {
-          DEFAULT: "#121212",
-          100: "#1D1D1D",
-          200: "#242424",
-          300: "#2B2B2B",
-          400: "#323232",
-          500: "#3A3A3A",
-          600: "#424242",
-          700: "#4A4A4A",
+          DEFAULT: "#000000",
+          100: "#000000",
+          200: "#000000",
+          300: "#000000",
+          400: "#000000",
+          500: "#0F0E0E",
+          600: "#232323",
+          700: "#3D3D3D",
           800: "#525252",
-          900: "#5A5A5A",
+          900: "#5C5C5C",
         },
         secondary: {
-          DEFAULT: "#757575",
+          DEFAULT: "#7C7C7C",
         },
+        black: {
+          DEFAULT: "#000000",
+          100: "#000000",
+          200: "#000000",
+          300: "#000000",
+          400: "#000000",
+          500: "#0F0E0E",
+          600: "#292929",
+          700: "#3D3D3D",
+          800: "#525252",
+          900: "#5C5C5C",
+        },
+        white: {
+          DEFAULT: "#FFFFFF",
+          100: "#F7F7F7",
+        },
+        gray: {
+          DEFAULT: "#3C3C3C",
+        },
+        accentMain: "#0F0E0E",
         background: {
           DEFAULT: "#121212",
           paper: "#1D1D1D",
@@ -35,23 +55,37 @@ export const tokens = (mode: string) => ({
         },
         borderColor: "#757575",
         borderColorHover: "#323232",
+        sidebarborderColor: "#3C3C3C",
       }
     : {
-        primary: {
+        white: {
           DEFAULT: "#FFFFFF",
           100: "#F7F7F7",
-          200: "#ECECEC",
-          300: "#E0E0E0",
-          400: "#D6D6D6",
-          500: "#CCCCCC",
-          600: "#B3B3B3",
-          700: "#999999",
-          800: "#808080",
-          900: "#666666",
+          200: "#D1D1D1",
+        },
+        primary: {
+          DEFAULT: "#FFFFFF",
+          500: "#F7F7F7",
         },
         secondary: {
-          DEFAULT: "#757575",
+          DEFAULT: "#7C7C7C",
         },
+        black: {
+          DEFAULT: "#000000",
+          100: "#525252",
+          200: "#3D3D3D",
+          300: "#292929",
+          400: "#141414",
+          500: "#000000",
+          600: "#000000",
+          700: "#000000",
+          800: "#000000",
+          900: "#000000",
+        },
+        gray: {
+          DEFAULT: "#3C3C3C",
+        },
+        accentMain: "#F7F7F7",
         background: {
           DEFAULT: "#F7F7F7",
           paper: "#FFFFFF",
@@ -68,6 +102,7 @@ export const tokens = (mode: string) => ({
         },
         borderColor: "#CCCCCC",
         borderColorHover: "#B3B3B3",
+        sidebarborderColor: "#D1D1D1",
       }),
   gradient: {
     start: "#fff",
