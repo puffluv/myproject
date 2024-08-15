@@ -28,7 +28,6 @@ const SideBarComponent = (props: any) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -67,6 +66,7 @@ const SideBarComponent = (props: any) => {
               backgroundColor: theme.palette.primary.main,
               transition: "background-color 1.5s ease-in-out",
               boxSizing: "border-box",
+              width: drawerWidth,
             },
           }}
         >
@@ -75,7 +75,7 @@ const SideBarComponent = (props: any) => {
               <FlexBetween>
                 <Box className={classes.brand}>
                   <img src={Logo} alt="Logo image" />
-                  <Typography variant="h1" className={classes.brandTitle}>
+                  <Typography variant="h2" className={classes.brandTitle}>
                     Myproject
                   </Typography>
                 </Box>

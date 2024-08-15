@@ -18,9 +18,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <PageWrapper>
-          <LayoutComponent>
-            <div className="App">
-              <Routes>
+          <div className="App">
+            <Routes>
+              <Route element={<LayoutComponent />}>
                 <Route element={<PrivateRoute />}>
                   <Route path="/" element={<Home />} />
                   <Route path="/watchlist" element={<WatchlistComponent />} />
@@ -29,9 +29,9 @@ function App() {
                 </Route>
                 <Route path="login" element={<AuthRootComponent />} />
                 <Route path="register" element={<AuthRootComponent />} />
-              </Routes>
-            </div>
-          </LayoutComponent>
+              </Route>
+            </Routes>
+          </div>
         </PageWrapper>
       </ThemeProvider>
     </ColorModeContext.Provider>
