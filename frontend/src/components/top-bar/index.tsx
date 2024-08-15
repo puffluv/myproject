@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Grid, IconButton, InputBase, useTheme } from "@mui/material";
 import { useAppSelector } from "../../utils/hook";
-import { ColorModeContext, tokens } from "../../theme";
+import { ColorModeContext } from "../../theme";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,10 +10,10 @@ import { useStyles } from "./styles";
 
 const TopBarComponent = () => {
   const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const classes = useStyles();
   const { user } = useAppSelector((state) => state.auth.user);
+  console.log(user);
 
   const handleColorModeToggle = () => {
     setTimeout(() => {
@@ -22,24 +22,18 @@ const TopBarComponent = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between" px="32px" py="24px">
-      <Grid>ДОБРО ПОЖАЛОВАТЬ, {user ? user.firstName.toUpperCase() : ""}</Grid>
+    <Box className={classes.root}>
+      <Grid>
+        ДОБРО ПОЖАЛОВАТЬ,{" "}
+        {user?.firstName ? user.firstName.toUpperCase() : "ГОСТЬ"}
+      </Grid>
       <Box display="flex">
-        <Grid
-          sx={{ pr: "38px", borderRight: `1px solid ${colors.borderColor}` }}
-        >
+        <Grid className={classes.iconBlock}>
           <IconButton
             onClick={handleColorModeToggle}
             className={classes.iconButton}
-            sx={{ mr: "45px", position: "relative", overflow: "hidden" }}
           >
-            <Box
-              className={classes.iconBackground}
-              sx={{
-                backgroundColor:
-                  theme.palette.mode === "dark" ? "#fff" : "#000",
-              }}
-            />
+            <Box className={classes.iconBackground} />
             {theme.palette.mode === "dark" ? (
               <DarkModeIcon />
             ) : (
@@ -50,22 +44,11 @@ const TopBarComponent = () => {
             <NotificationsNoneIcon />
           </IconButton>
         </Grid>
-        <Grid
-          sx={{
-            display: "flex",
-            backgroundColor: `${colors.primary[600]}`,
-            borderRadius: "9px",
-            ml: "28px",
-          }}
-        >
-          <IconButton className={classes.searchBlock}>
+        <Grid className={classes.searchBlock}>
+          <IconButton className={classes.searchIcon}>
             <SearchIcon />
           </IconButton>
-          <InputBase
-            className={classes.searchInput}
-            sx={{ px: "18px", py: "8px" }}
-            placeholder="Поиск"
-          />
+          <InputBase className={classes.searchInput} placeholder="Поиск" />
         </Grid>
       </Box>
     </Box>

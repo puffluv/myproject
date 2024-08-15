@@ -6,7 +6,7 @@ import AuthRootComponent from "./components/auth";
 import { ColorModeContext, useMode } from "./theme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import LayoutComponent from "./components/layout";
-import PageWrapper from "./components/top-bar/pagewrapper";
+import PageWrapper from "./components/pagewrapper";
 import WatchlistComponent from "./components/watchlist";
 import NewsComponent from "./components/news";
 import SettingsComponent from "./components/settings";

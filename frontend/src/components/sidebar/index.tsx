@@ -65,27 +65,17 @@ const SideBarComponent = (props: any) => {
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary.main,
               backgroundColor: theme.palette.primary.main,
-              transition: "background-color 1s ease-in-out",
+              transition: "background-color 1.5s ease-in-out",
               boxSizing: "border-box",
             },
           }}
         >
-          <Box
-            width="100%"
-            sx={{ borderBottom: `1px solid ${colors.sidebarborderColor}` }}
-          >
+          <Box className={classes.navBlock}>
             <Box>
               <FlexBetween>
                 <Box className={classes.brand}>
                   <img src={Logo} alt="Logo image" />
-                  <Typography
-                    variant="h1"
-                    color={
-                      theme.palette.mode === "dark"
-                        ? colors.white.DEFAULT
-                        : colors.black.DEFAULT
-                    }
-                  >
+                  <Typography variant="h1" className={classes.brandTitle}>
                     Myproject
                   </Typography>
                 </Box>
@@ -97,13 +87,7 @@ const SideBarComponent = (props: any) => {
               </FlexBetween>
             </Box>
 
-            <List
-              sx={{
-                marginBottom: "55px",
-              }}
-            >
-              {renderNavMenu}
-            </List>
+            <List className={classes.navList}>{renderNavMenu}</List>
           </Box>
           <Box width="100%">
             <List>

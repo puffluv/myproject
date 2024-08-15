@@ -1,20 +1,10 @@
 import React, { useEffect, ReactNode } from "react";
-import { useTheme, Theme } from "@mui/material";
-import { makeStyles, createStyles } from "@mui/styles";
+import { useTheme } from "@mui/material";
+import { useStyles } from "./style";
 
 interface PageWrapperProps {
   children: ReactNode;
 }
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    wrapper: {
-      transition: "background-color 1s ease-in-out",
-      minHeight: "100vh",
-      backgroundColor: theme.palette.background.default,
-    },
-  })
-);
 
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   const theme = useTheme();
