@@ -27,6 +27,14 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
           pattern:
             /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         })}
+        sx={{
+          "& .MuiFormHelperText-root": {
+            backgroundColor: "transparent !important",
+            padding: "2px 4px !important",
+            boxShadow: "none !important",
+            border: "none !important",
+          },
+        }}
       />
       <TextField
         error={!!errors.password}
