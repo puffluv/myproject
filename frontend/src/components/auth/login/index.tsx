@@ -4,7 +4,7 @@ import React from "react";
 import "../style.scss";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-  const { setPassword, setEmail, navigate } = props;
+  const { navigate, register, errors } = props;
   return (
     <>
       <Typography variant="h3">Авторизация</Typography>
@@ -14,21 +14,33 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
       </Typography>
 
       <TextField
+        error={!!errors.email}
+        type="email"
         fullWidth
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите email"
-        onChange={(event) => setEmail(event.target.value)}
+        helperText={errors.email ? `${errors.email.message}` : ""}
+        {...register("email", {
+          required: "Это обязательное поле!",
+          pattern:
+            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        })}
       />
       <TextField
+        error={!!errors.password}
         type="password"
         fullWidth
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите пароль"
-        onChange={(event) => setPassword(event.target.value)}
+        helperText={errors.password ? `${errors.password.message}` : ""}
+        {...register("password", {
+          required: "Это обязательное поле!",
+          minLength: 6,
+        })}
       />
       <Button
         type="submit"
