@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import {
   Box,
   Drawer,
-  Divider,
   IconButton,
   List,
   ListItem,
@@ -12,25 +11,26 @@ import {
   ListItemText,
   Typography,
   useTheme,
-  colors,
 } from "@mui/material";
 import { ChevronLeftOutlined, LogoutOutlined } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "../flex-between";
 import { navMenu } from "../../common/moks/navigate";
-import { tokens } from "../../theme";
 import Logo from "../../assets/images/sidebar/logo.svg";
+import { ISidebarProps } from "../../common/types/sidebar";
 
-const SideBarComponent = (props: any) => {
+const SideBarComponent: FC<ISidebarProps> = (
+  props: ISidebarProps
+): JSX.Element => {
   const [active, setActive] = useState("");
-  const { isNotMobile, drawerWidth, isOpen, setIsOpen } = props;
+  const { isNonMobile, drawerWidth, isOpen, setIsOpen } = props;
   const classes = useStyles();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const theme = useTheme();
 
   useEffect(() => {
-    setActive(pathname.substring(1));
+    setActive(pathname);
   }, [pathname]);
 
   const renderNavMenu = navMenu.map((element): JSX.Element => {
@@ -38,7 +38,11 @@ const SideBarComponent = (props: any) => {
       <ListItem key={element.id}>
         <ListItemButton
           onClick={() => navigate(`${element.path}`)}
-          className={classes.navItem}
+          className={
+            active === element.path
+              ? `${classes.navItem} ${classes.active}`
+              : classes.navItem
+          }
         >
           <ListItemIcon>{element.icon}</ListItemIcon>
           <ListItemText>
@@ -79,7 +83,7 @@ const SideBarComponent = (props: any) => {
                     Myproject
                   </Typography>
                 </Box>
-                {!isNotMobile && (
+                {!isNonMobile && (
                   <IconButton onClick={() => setIsOpen(!isOpen)}>
                     <ChevronLeftOutlined />
                   </IconButton>

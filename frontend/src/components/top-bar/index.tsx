@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { FC, useContext } from "react";
 import {
   AppBar,
   Box,
@@ -15,12 +15,15 @@ import { LightMode, DarkMode, Search, MenuOutlined } from "@mui/icons-material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { useStyles } from "./styles";
 import FlexBetween from "../flex-between";
+import { ITopbarProps } from "../../common/types/topbar";
 
-const TopBarComponent = (props: any) => {
+const TopBarComponent: FC<ITopbarProps> = (
+  props: ITopbarProps
+): JSX.Element => {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   const classes = useStyles();
-  const { setIsOpen, isOpen, drawerWidth } = props;
+  const { setIsOpen, isOpen } = props;
   const { user } = useAppSelector((state) => state.auth.user);
 
   const handleColorModeToggle = () => {

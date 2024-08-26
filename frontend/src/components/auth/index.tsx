@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoginPage from "./login";
 import RegisterPage from "./register";
-import "./style.scss";
 import { Box } from "@mui/material";
 import { instance } from "../../utils/axios";
 import { useAppDispatch } from "../../utils/hook";
@@ -14,11 +13,14 @@ import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema, RegisterSchema } from "../../utils/yup";
+import { useStyles } from "./style";
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const classes = useStyles();
+
   const {
     register,
     formState: { errors },
@@ -81,9 +83,9 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div className="root">
+    <div className={classes.root}>
       <ToastContainer />
-      <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
+      <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
         <Box
           display="flex"
           justifyContent="center"
