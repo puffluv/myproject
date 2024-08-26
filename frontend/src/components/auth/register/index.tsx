@@ -6,14 +6,7 @@ import "../style.scss";
 const RegisterPage: React.FC<IPropsRegister> = (
   props: IPropsRegister
 ): JSX.Element => {
-  const {
-    setPassword,
-    setEmail,
-    setConfirmPassword,
-    setFirstName,
-    setUsername,
-    navigate,
-  } = props;
+  const { navigate, register, errors } = props;
   return (
     <>
       <Typography variant="h3" textAlign="center">
@@ -25,51 +18,58 @@ const RegisterPage: React.FC<IPropsRegister> = (
       </Typography>
 
       <TextField
+        error={!!errors.email}
         fullWidth
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите email"
-        required
-        onChange={(event) => setEmail(event.target.value)}
+        helperText={errors.email ? `${errors.email.message}` : ""}
+        {...register("email")}
       />
       <TextField
+        error={!!errors.firstName}
         fullWidth
         margin="normal"
         label="Name"
         variant="outlined"
         placeholder="Введите имя"
-        required
-        onChange={(event) => setFirstName(event.target.value)}
+        helperText={errors.firstName ? `${errors.firstName.message}` : ""}
+        {...register("firstName")}
       />
       <TextField
+        error={!!errors.username}
         fullWidth
         margin="normal"
         label="Username"
         variant="outlined"
         placeholder="Введите псевдоним"
-        required
-        onChange={(event) => setUsername(event.target.value)}
+        helperText={errors.username ? `${errors.username.message}` : ""}
+        {...register("username")}
       />
       <TextField
+        error={!!errors.password}
         type="password"
         fullWidth
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите пароль"
-        required
-        onChange={(event) => setPassword(event.target.value)}
+        helperText={errors.password ? `${errors.password.message}` : ""}
+        {...register("password")}
       />
       <TextField
+        error={!!errors.confirmPassword}
         type="password"
         fullWidth
         margin="normal"
         label="Confirm Password"
         variant="outlined"
-        required
         placeholder="Подтвердите пароль"
-        onChange={(event) => setConfirmPassword(event.target.value)}
+        helperText={
+          errors.confirmPassword ? `${errors.confirmPassword.message}` : ""
+        }
+        {...register("confirmPassword")}
       />
 
       <Button

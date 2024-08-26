@@ -4,7 +4,7 @@ import React from "react";
 import "../style.scss";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-  const { setPassword, setEmail, navigate } = props;
+  const { navigate, register, errors } = props;
   return (
     <>
       <Typography variant="h3">Авторизация</Typography>
@@ -14,21 +14,34 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
       </Typography>
 
       <TextField
+        error={!!errors.email}
+        type="email"
         fullWidth
         margin="normal"
         label="Email"
         variant="outlined"
         placeholder="Введите email"
-        onChange={(event) => setEmail(event.target.value)}
+        helperText={errors.email ? `${errors.email.message}` : ""}
+        {...register("email")}
+        sx={{
+          "& .MuiFormHelperText-root": {
+            backgroundColor: "transparent !important",
+            padding: "2px 4px !important",
+            boxShadow: "none !important",
+            border: "none !important",
+          },
+        }}
       />
       <TextField
+        error={!!errors.password}
         type="password"
         fullWidth
         margin="normal"
         label="Password"
         variant="outlined"
         placeholder="Введите пароль"
-        onChange={(event) => setPassword(event.target.value)}
+        helperText={errors.password ? `${errors.password.message}` : ""}
+        {...register("password")}
       />
       <Button
         type="submit"

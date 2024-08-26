@@ -134,7 +134,6 @@ export const themeSettings: any = (mode: string) => {
       MuiTextField: {
         styleOverrides: {
           root: {
-            backgroundColor: colors.input.background,
             "& .MuiOutlinedInput-root": {
               transition: "border-color 0.3s",
               "& fieldset": {
@@ -150,6 +149,7 @@ export const themeSettings: any = (mode: string) => {
               },
               "& input": {
                 color: colors.input.text,
+                backgroundColor: colors.input.background,
               },
             },
             "& .MuiInputLabel-root": {
@@ -196,7 +196,7 @@ export const ColorModeContext = createContext<{ toggleColorMode: () => void }>({
 });
 
 export const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({

@@ -4,5 +4,6 @@ export const appErrors = {
   PASSWORD_CHARACTER: "Пароль не должен содержать специальные символы!",
   INVALID_EMAIL: "Неправильный формат email",
   ALL_FIELDS_REQUIRED: "All fields are required",
-  EMAIL_OR_USERNAME: "User with this email or username already exists",
+  EMAIL_OR_USERNAME: "Пользователь с таким email или username уже существует!",
+  FIELDS_REQUIRED: "Это поле обязательное!",
 };

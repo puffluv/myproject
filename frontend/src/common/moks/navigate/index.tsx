@@ -4,7 +4,6 @@ import {
   Newspaper,
   SettingsOutlined,
 } from "@mui/icons-material";
-import path from "path";
 
 export const navMenu = [
   {

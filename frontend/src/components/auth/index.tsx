@@ -11,24 +11,30 @@ import { appErrors } from "../../common/errors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AxiosError } from "axios";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginSchema, RegisterSchema } from "../../utils/yup";
 
 const AuthRootComponent: React.FC = (): JSX.Element => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [username, setUsername] = useState("");
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(
+      location.pathname === "/login" ? LoginSchema : RegisterSchema
+    ),
+  });
 
-  const handleSubmit = async (Event: { preventDefault: () => void }) => {
-    Event.preventDefault();
+  const handleSubmitForm = async (data: any) => {
     if (location.pathname === "/login") {
       try {
         const userData = {
-          email,
-          password,
+          email: data.email,
+          password: data.password,
         };
         const user = await instance.post("auth/login", userData);
         await dispatch(login(user.data));
@@ -39,38 +45,19 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
         }
       }
     } else {
-      if (!firstName || !username || !email || !password || !confirmPassword) {
-        toast.error(appErrors.ALL_FIELDS_REQUIRED);
-        return;
-      }
-
-      if (!/\S+@\S+\.\S+/.test(email)) {
-        toast.error(appErrors.INVALID_EMAIL);
-        return;
-      }
-
-      if (/[^a-zA-Z0-9]/.test(password)) {
-        toast.error(appErrors.PASSWORD_CHARACTER);
-        return;
-      }
-
-      if (password.length < 6) {
-        toast.error(appErrors.PASSWORD_LESS);
-        return;
-      }
-
-      if (password !== confirmPassword) {
+      if (data.password !== data.confirmPassword) {
         toast.error(appErrors.PASSWORD_DONT_MUCH);
         return;
       }
 
       try {
         const userData = {
-          firstName,
-          username,
-          email,
-          password,
+          firstName: data.firstName,
+          username: data.username,
+          email: data.email,
+          password: data.password,
         };
+
         const newUser = await instance.post("auth/register", userData);
         await dispatch(login(newUser.data));
         navigate("/");
@@ -96,7 +83,7 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
   return (
     <div className="root">
       <ToastContainer />
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
         <Box
           display="flex"
           justifyContent="center"
@@ -110,18 +97,15 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
         >
           {location.pathname === "/login" ? (
             <LoginPage
-              setEmail={setEmail}
-              setPassword={setPassword}
               navigate={navigate}
+              register={register}
+              errors={errors}
             />
           ) : location.pathname === "/register" ? (
             <RegisterPage
-              setEmail={setEmail}
-              setPassword={setPassword}
-              setConfirmPassword={setConfirmPassword}
-              setFirstName={setFirstName}
-              setUsername={setUsername}
               navigate={navigate}
+              register={register}
+              errors={errors}
             />
           ) : null}
         </Box>
