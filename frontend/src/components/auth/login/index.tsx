@@ -22,11 +22,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
         variant="outlined"
         placeholder="Введите email"
         helperText={errors.email ? `${errors.email.message}` : ""}
-        {...register("email", {
-          required: "Это обязательное поле!",
-          pattern:
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        })}
+        {...register("email")}
         sx={{
           "& .MuiFormHelperText-root": {
             backgroundColor: "transparent !important",
@@ -45,10 +41,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
         variant="outlined"
         placeholder="Введите пароль"
         helperText={errors.password ? `${errors.password.message}` : ""}
-        {...register("password", {
-          required: "Это обязательное поле!",
-          minLength: 6,
-        })}
+        {...register("password")}
       />
       <Button
         type="submit"
