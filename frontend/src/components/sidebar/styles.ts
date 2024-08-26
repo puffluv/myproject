@@ -27,23 +27,56 @@ export const useStyles = makeStyles((theme: Theme) => {
       marginBottom: "55px",
     },
     navItem: {
-      "&:hover": {
+      position: "relative",
+      padding: "10px 15px",
+      borderRadius: "6px !important",
+      color:
+        theme.palette.mode === "dark"
+          ? colors.white.DEFAULT
+          : colors.black.DEFAULT,
+      transition: "transform 0.3s ease !important",
+
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "6px",
         backgroundImage:
           "linear-gradient(45deg, #1900d5 30%, #5300e8 90%) !important",
-        transition: "background-color 0.3s, transform 0.6s",
-        "&:hover": {
-          backgroundColor: "#5300e8",
-          transform: "scale(1.05)",
+        opacity: 0,
+        transition: "opacity 0.6s ease ",
+        zIndex: -1,
+      },
+
+      "&:hover": {
+        transform: "scale(1.05)",
+        "&::before": {
+          opacity: 1,
         },
-        "&:active": {
-          backgroundColor: "#3e00a6",
-          transform: "scale(1)",
-        },
-        borderRadius: "6px",
         color: "#fff",
         "& .MuiSvgIcon-root": {
-          color: `${colors.white.DEFAULT}`,
+          color: "#fff",
         },
+      },
+
+      "&:active": {
+        transform: "scale(1)",
+        "&::before": {
+          opacity: 0.8,
+        },
+      },
+    },
+    active: {
+      backgroundImage:
+        "linear-gradient(45deg, #1900d5 30%, #5300e8 90%) !important",
+      backgroundColor: "#3e00a6 !important",
+      color: "#fff !important",
+      borderRadius: "6px !important",
+      "& .MuiSvgIcon-root": {
+        color: `${colors.white.DEFAULT}`,
       },
     },
   };
