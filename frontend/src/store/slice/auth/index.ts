@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IAuthState, IPublicUser } from "../../../common/types/auth";
+import { loginUser, registerUser } from "../../../store/thunks/auth";
 
 const initialState: IAuthState = {
   user: {
@@ -16,6 +17,17 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isLogged = true;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLogged = true;
+    });
+
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLogged = true;
+    });
   },
 });
 

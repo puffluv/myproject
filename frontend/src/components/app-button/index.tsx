@@ -1,6 +1,5 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { styled } from "@mui/styles";
-import React from "react";
 
 const AppButton = styled(Button)({
   fontFamily: '"Ysabeau SC"',
