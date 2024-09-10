@@ -1,10 +1,10 @@
 import { TextField, Typography } from "@mui/material";
 import { IPropsLogin } from "@src/common/types/auth";
 import React from "react";
-import AppButton from "../../../components/app-button";
+import AppLoadingButton from "../../../components/loading-button";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
-  const { navigate, register, errors } = props;
+  const { navigate, register, errors, loading } = props;
   return (
     <>
       <Typography variant="h3">Авторизация</Typography>
@@ -34,9 +34,10 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
         helperText={errors.password ? `${errors.password.message}` : ""}
         {...register("password")}
       />
-      <AppButton type="submit" variant="contained">
-        Войти
-      </AppButton>
+
+      <AppLoadingButton loading={loading} type="submit" variant="contained">
+        {loading ? null : "Войти"}
+      </AppLoadingButton>
 
       <Typography variant="body1" sx={{ fontFamily: "Ysabeau SC" }}>
         У Вас нет аккаунта?{" "}

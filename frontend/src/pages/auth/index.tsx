@@ -3,9 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import LoginPage from "./login";
 import RegisterPage from "./register";
 import { Box } from "@mui/material";
-import { instance } from "../../utils/axios";
-import { useAppDispatch } from "../../utils/hook";
-import { login } from "../../store/slice/auth";
+import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { appErrors } from "../../common/errors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,6 +29,8 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
       location.pathname === "/login" ? LoginSchema : RegisterSchema
     ),
   });
+
+  const loading = useAppSelector((state) => state.auth.isLoading);
 
   const handleSubmitForm = async (data: any) => {
     if (location.pathname === "/login") {
@@ -90,12 +90,14 @@ const AuthRootComponent: React.FC = (): JSX.Element => {
               navigate={navigate}
               register={register}
               errors={errors}
+              loading={loading}
             />
           ) : location.pathname === "/register" ? (
             <RegisterPage
               navigate={navigate}
               register={register}
               errors={errors}
+              loading={loading}
             />
           ) : null}
         </Box>

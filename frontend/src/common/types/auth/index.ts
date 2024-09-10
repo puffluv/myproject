@@ -7,6 +7,7 @@ export interface IPropsLogin<
   navigate: (to: string) => void;
   register: UseFormRegister<any>;
   errors: FieldErrors<any>;
+  loading: boolean;
 }
 
 export interface IPropsRegister<
@@ -16,6 +17,7 @@ export interface IPropsRegister<
   navigate: (to: string) => void;
   register: UseFormRegister<any>;
   errors: FieldErrors<any>;
+  loading: boolean;
 }
 
 export interface IAuthState {
@@ -23,6 +25,7 @@ export interface IAuthState {
     user: IPublicUser;
   };
   isLogged: boolean;
+  isLoading: boolean;
 }
 
 export interface IPublicUser {
