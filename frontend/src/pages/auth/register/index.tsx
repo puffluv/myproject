@@ -1,12 +1,12 @@
 import { TextField, Typography } from "@mui/material";
 import { IPropsRegister } from "@src/common/types/auth";
 import React from "react";
-import AppButton from "../../../components/app-button";
+import AppLoadingButton from "../../../components/loading-button";
 
 const RegisterPage: React.FC<IPropsRegister> = (
   props: IPropsRegister
 ): JSX.Element => {
-  const { navigate, register, errors } = props;
+  const { navigate, register, errors, loading } = props;
   return (
     <>
       <Typography variant="h3">Регистрация</Typography>
@@ -70,9 +70,9 @@ const RegisterPage: React.FC<IPropsRegister> = (
         {...register("confirmPassword")}
       />
 
-      <AppButton type="submit" variant="contained">
+      <AppLoadingButton loading={loading} type="submit" variant="contained">
         Создать аккаунт
-      </AppButton>
+      </AppLoadingButton>
 
       <Typography variant="body1" sx={{ fontFamily: "Ysabeau SC" }}>
         У Вас уже есть аккаунт?{" "}

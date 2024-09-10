@@ -41,8 +41,7 @@ const TopBarComponent: FC<ITopbarProps> = (
             onClick={() => setIsOpen(!isOpen)}
           />
           <Typography variant="h6">
-            ДОБРО ПОЖАЛОВАТЬ,{" "}
-            {user?.firstName ? user.firstName.toUpperCase() : "ГОСТЬ"}{" "}
+            ДОБРО ПОЖАЛОВАТЬ, {sessionStorage.getItem("name")}
           </Typography>
         </FlexBetween>
 

@@ -1,10 +1,11 @@
-import { Button } from "@mui/material";
 import { styled } from "@mui/styles";
+import LoadingButton from "@mui/lab/LoadingButton";
 
-const AppButton = styled(Button)({
+const AppLoadingButton = styled(LoadingButton)({
   fontFamily: '"Ysabeau SC"',
   marginTop: "16px !important",
   marginBottom: "16px !important",
+  height: "50px !important",
   width: "60% !important",
   maxWidth: "300px !important",
   borderRadius: "25px !important",
@@ -21,11 +22,13 @@ const AppButton = styled(Button)({
     backgroundColor: "#5300e8 !important",
     transform: "scale(1.05) !important",
   },
-
+  "& .MuiLoadingButton-loadingIndicator": {
+    color: "white", // Задает белый цвет ползунка
+  },
   "&:active": {
     backgroundColor: "#3e00a6 !important",
     transform: "scale(1) !important",
   },
 });
 
-export default AppButton;
+export default AppLoadingButton;
